@@ -11,6 +11,9 @@ apt-get upgrade -y
 apt-get install vim aircrack-ng lirc pigpio python3-pigpio git \
   nodejs -y
 
+cp setup/lirc_options.conf /etc/lirc/lirc_options.conf
+cp setup/config.txt /boot/config.txt
+
 chmod +x setup/ifrestart.sh
 cp setup/ifrestart.sh /usr/local/bin/ifrestart.sh
 cp setup/cron /var/spool/cron/crontabs/pi
