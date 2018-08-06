@@ -1,0 +1,19 @@
+{
+  "name": "bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "ir": "node ir_bot.js",
+    "mock": "node mock.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-polyfill": "^6.26.0"
+  },
+  "dependencies": {
+    "isomorphic-fetch": "^2.2.1",
+    "rss-parser": "^3.4.2"
+  }
+}

@@ -25,6 +25,12 @@ $ sudo irrecord -n -f -d /dev/lirc0 [any].conf
 $ sudo irsend SEND_ONCE regza on
 ```
 
+## On push remote controll button list
+
+```
+$ irw
+```
+
 # Search Network
 
 ## 電波傍受方法
