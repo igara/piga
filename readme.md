@@ -54,4 +54,5 @@ nmap 192.168.88.0-254
 arp -a
 # 削除したいARPテーブルキャッシュの削除
 sudo arp -d 192.168.88.XXX
+sudo ip -s -s neigh flush all
 ```

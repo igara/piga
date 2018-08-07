@@ -1,15 +1,17 @@
 require('isomorphic-fetch')
 require('babel-polyfill')
 
-const {spawn} = require('child_process')
+const {spawn, execSync} = require('child_process')
 const irw = spawn('irw')
+const RssParser = require('rss-parser')
+const {env} = require('./env')
 
 // 埼玉のテレビ テレ玉取得のため
 const saitamaChannel = 'https://tv.so-net.ne.jp/rss/schedulesByCurrentTime.action?group=10&stationAreaId=29'
 // 神奈川のテレビ tvk取得のため
 const kanagawaChannel = 'https://tv.so-net.ne.jp/rss/schedulesByCurrentTime.action?group=10&stationAreaId=24'
 // 千葉のテレビ チバテレビ取得のため
-const TibaChannel = 'https://tv.so-net.ne.jp/rss/schedulesByCurrentTime.action?group=10&stationAreaId=27'
+const tibaChannel = 'https://tv.so-net.ne.jp/rss/schedulesByCurrentTime.action?group=10&stationAreaId=27'
 // 東京のテレビ
 const tokyoChannel = 'https://tv.so-net.ne.jp/rss/schedulesByCurrentTime.action?group=10&stationAreaId=23'
 
@@ -24,8 +26,7 @@ irw.stdout.on('data', async (data) => {
     // 
 
   } else if (isFinite(+signal)) {
-    const RssParser = require('rss-parser');
-    const parser = new RssParser();
+    const parser = new RssParser()
     const json = await parser.parseURL(tokyoChannel)
     const channel = json.items.find(item => {
       const regexp = new RegExp(`\\(Ch\\.${+signal}\\)`)
@@ -34,7 +35,6 @@ irw.stdout.on('data', async (data) => {
     if (typeof channel === 'undefined') {
 
     } else {
-      const {env} = require('./env')
       await fetch(env.discord_webhook, {
         body: JSON.stringify({
           username: 'piga',
@@ -52,12 +52,12 @@ ${channel.link}\r
       })
     }
   }
-});
+})
 
 irw.stderr.on('data', (data) => {
-  console.log(`stderr: ${data}`);
-});
+  console.log(`stderr: ${data}`)
+})
 
 irw.on('close', (code) => {
-  console.log(`child process exited with code ${code}`);
-});
+  console.log(`child process exited with code ${code}`)
+})
