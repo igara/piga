@@ -12,7 +12,7 @@ const spyNetwork = async () => {
     const execRemoveArpCache = execSync('ip -s -s neigh flush all').toString()
     const execNmap = execSync('nmap 192.168.88.0-254').toString()
     const execArp = execSync('arp -a').toString()
-    const dir = fs.readdirSync('machines')
+    const dir = fs.readdirSync(`${__dirname}/machines`)
     for (let macAddress of env.mac_address) {
       const regexp = new RegExp(macAddress.mac_address)
       const mac_address = macAddress.mac_address.replace(/:/g, '_')
@@ -21,16 +21,16 @@ const spyNetwork = async () => {
       })
 
       if (typeof item !== 'undefined' && !execArp.match(regexp)) {
-        fs.unlinkSync(`machines/${mac_address}`)
+        fs.unlinkSync(`${__dirname}/machines/${mac_address}`)
       }
       if (typeof item === 'undefined' && execArp.match(regexp)) {
-        fs.writeFileSync(`machines/${mac_address}`, '')
+        fs.writeFileSync(`${__dirname}/machines/${mac_address}`, '')
         await fetch(env.discord_webhook, {
           body: JSON.stringify({
             username: 'piga',
             avatar_url: env.avatar_url,
             content: `${macAddress.name}\r
-は起動中です。
+を起動しました。
             `
           }),
           headers: {
