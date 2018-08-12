@@ -1,0 +1,4 @@
+target
+env.json
+src/machines/*
+!src/machines/.gitkeep
