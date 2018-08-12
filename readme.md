@@ -12,28 +12,43 @@ $ ssh pi@rasperrypi.local
 $ sudo sh setup.sh
 ```
 
-# Learn IR
+# Run Program
+
+```
+# NodeJS Version
+$ cd bot_nodejs
+$ sudo node ir_bot.js or network_bot.js
+
+# Rust Version
+$ cd network_bot_rust
+$ sudo cargo run
+```
+
+
+# memo
+
+## Learn IR
 
 ```
 $ sudo irrecord -n -f -d /dev/lirc0 [any].conf
 上記で作成したconfを/etc/lirc/lircd.confに記載する必要がある
 ```
 
-## Send remote controll signal
+### Send remote controll signal
 
 ```
 $ sudo irsend SEND_ONCE regza on
 ```
 
-## On push remote controll button list
+### On push remote controll button list
 
 ```
 $ irw
 ```
 
-# Search Network
+## Search Network
 
-## 電波傍受方法
+### 電波傍受方法
 
 ```
 $ sudo ifconfig wlan0 down
@@ -46,7 +61,7 @@ $ sudo airodump-ng wlan0mon[sudo airmon-ng start wlan0した時のinterfaceを�
 sudo airodump-ng wlan0mon --bssid XX:XX:XX:XX:XX:XX[AP MAC Address] -w log
 ```
 
-## 逆引き的にルータ内の機器を検索
+### 逆引き的にルータ内の機器を検索
 
 ```
 nmap 192.168.88.0-254
