@@ -16,7 +16,7 @@ $ sudo sh setup.sh
 
 - circuit
 
-![circuit](https://raw.githubusercontent.com/igara/piga/master/images/raspberrypi.png "circuit")
+![circuit](https://raw.githubusercontent.com/igara/piga/master/images/raspberry.png "circuit")
 
 # Run Program
 
