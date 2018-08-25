@@ -1,16 +1,22 @@
 # How to
 
-Raspberry Pi Type B
-Raspbian Image Version: 2018-06-27-raspbian-stretch-lite
-USB Wifi Module: WLI-UC-GNM
-(※電波傍受的に検索する必要がなければGW-USNanoのような停電力なものでも良い)
+Raspberry Pi Type B  
+Raspbian Image Version: 2018-06-27-raspbian-stretch-lite  
+USB Wifi Module: WLI-UC-GNM  
+(※電波傍受的に検索する必要がなければGW-USNanoのような停電力なものでも良い)  
 
 # Setup
+
+- install command
 
 ```
 $ ssh pi@rasperrypi.local
 $ sudo sh setup.sh
 ```
+
+- circuit
+
+![circuit](https://raw.githubusercontent.com/igara/piga/master/images/raspberrypi.png "circuit")
 
 # Run Program
 
