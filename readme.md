@@ -10,7 +10,7 @@ USB Wifi Module: WLI-UC-GNM
 - install command
 
 ```
-$ ssh pi@rasperrypi.local
+$ ssh pi@raspberrypi.local
 $ sudo sh setup.sh
 ```
 
