@@ -1,0 +1,46 @@
+version: "3"
+
+services:
+  web:
+    build:
+      context: ./web
+      dockerfile: web.Dockerfile
+    volumes:
+      - ./web:/web:cached
+      - /var/run/docker.sock:/var/run/docker.sock:cached
+    environment:
+      WEB_ENV: ${WEB_ENV}
+      HOST: 0.0.0.0
+      TZ: Asia/Tokyo
+    networks:
+      - frontend
+      - backend
+    restart: always
+
+  https-portal:
+    image: steveltn/https-portal:1
+    ports:
+      - "80:80"
+      - "443:443"
+    links:
+      - web:web
+    environment:
+      DOMAINS: "${WEB_DOMAIN} -> http://web:3000"
+      STAGE: "${WEB_ENV}"
+      RESOLVER: "127.0.0.11 ipv6=off valid=60s"
+      DYNAMIC_UPSTREAM: "true"
+      WEBSOCKET: "true"
+      CLIENT_MAX_BODY_SIZE: 0
+      TZ: Asia/Tokyo
+    volumes:
+      - ./data/ssl_certs:/var/lib/https-portal:cached
+    networks:
+      - frontend
+      - backend
+    restart: always
+
+networks:
+  frontend:
+    driver: "bridge"
+  backend:
+    driver: "bridge"
