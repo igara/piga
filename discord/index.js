@@ -29,7 +29,7 @@ client.on("message", message => {
   }
   if (message.content === "@bot help") {
     const sendText = `デプロイ: @bot deploy latest
-通知: @bot ip piga
+IP告知: @bot ip piga
 `;
     message
       .reply(sendText)
