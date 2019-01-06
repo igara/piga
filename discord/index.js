@@ -18,7 +18,7 @@ client.on("ready", () => {
   const result = child_process.execSync(`
 	curl -H "Accept: application/json" \
 	-H "Content-type: application/json" \
-	-X POST -d '{"username":"syonet.work","content":"syonet.workは再起動しました。"}' '${DISCORD_WEBHOCK}'`);
+	-X POST -d '{"username":"piga","content":"pigaは再起動しました。"}' '${DISCORD_WEBHOCK}'`);
   console.log(result);
 });
 
@@ -61,17 +61,10 @@ client.on("message", message => {
     }
   }
   if (message.content === "@bot ip piga") {
-    const sendText = `pigaのIPを検索中です`;
+    const result = child_process.execSync("curl ifconfig.io");
     message
-      .reply(sendText)
-      .then(m => {
-        console.log(`Sent message: ${sendText}`);
-        const result = child_process.execSync("curl ifconfig.io");
-        console.log(result);
-        message
-          .reply(`${result}です。`)
-          .then(m => console.log(`Sent message: ${result}`));
-      })
+      .reply(`${result}です。`)
+      .then(m => console.log(`Sent message: ${result}`))
       .catch(console.error);
   }
 });
