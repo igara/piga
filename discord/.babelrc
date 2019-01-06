@@ -1,0 +1,13 @@
+{
+  "presets": ["env", "stage-0", "stage-3"],
+  "plugins": [
+    [
+      "babel-plugin-transform-runtime",
+      {
+        "regenerator": true
+      }
+    ],
+    ["transform-flow-strip-types"],
+    ["transform-class-properties"]
+  ]
+}
