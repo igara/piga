@@ -8,6 +8,8 @@ services:
     volumes:
       - ./web:/web:cached
       - /var/run/docker.sock:/var/run/docker.sock:cached
+    ports:
+      - "3000:3000"
     environment:
       WEB_ENV: ${WEB_ENV}
       HOST: 0.0.0.0
