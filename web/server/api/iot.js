@@ -8,11 +8,11 @@ const client = new Client()
 const tpLinkMacs = process.env.TPLINK_MACS.split(',')
 const ipRegexp = /\d+.\d+.\d+.\d+/
 const macRegexp = /\S+:\S+:\S+:\S+/
-execSync('nmap 192.168.88.0-254')
-const execArp = execSync('arp -a').toString()
-const arpLine = execArp.split('\n')
 
 app.get('/', async (req, res) => {
+  const execArp = execSync('arp -a').toString()
+  const arpLine = execArp.split('\n')
+
   const token = req.headers.token
   if (token) {
     try {
@@ -70,6 +70,9 @@ app.get('/', async (req, res) => {
 })
 
 app.post('/', async (req, res) => {
+  const execArp = execSync('arp -a').toString()
+  const arpLine = execArp.split('\n')
+
   const token = req.headers.token
   if (token) {
     try {
