@@ -1,12 +1,31 @@
-
 const express = require('express')
 const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
+const bodyParser = require('body-parser')
 const app = express()
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
 const host = process.env.HOST || '127.0.0.1'
 const port = process.env.PORT || 3000
 
 app.set('port', port)
+
+// CORSを許可する
+app.use((req, res, next) => {
+  res.set('Access-Control-Allow-Origin', '*')
+  res.set('Access-Control-Allow-Headers', 'Content-Type')
+  res.set('Cache-Control', 'public, max-age=3600')
+
+  if (req.method === 'OPTIONS') {
+    res.append('Access-Control-Allow-Headers', 'Token')
+    res.set(
+      'Access-Control-Allow-Methods',
+      req.get('access-control-request-Method')
+    )
+    return res.send()
+  }
+  next()
+})
 
 // Import and Set Nuxt.js options
 let config = require('../nuxt.config.js')
