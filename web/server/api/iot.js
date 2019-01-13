@@ -5,11 +5,11 @@ const axios = require('axios')
 
 const app = express()
 const client = new Client()
-const tpLinkMacs = process.env.TPLINK_MACS.split(',')
 const ipRegexp = /\d+.\d+.\d+.\d+/
 const macRegexp = /\S+:\S+:\S+:\S+/
 
 app.get('/', async (req, res) => {
+  const tpLinkMacs = process.env.TPLINK_MACS.split(',')
   const execArp = execSync('arp -a').toString()
   const arpLine = execArp.split('\n')
 
@@ -70,6 +70,7 @@ app.get('/', async (req, res) => {
 })
 
 app.post('/', async (req, res) => {
+  const tpLinkMacs = process.env.TPLINK_MACS.split(',')
   const execArp = execSync('arp -a').toString()
   const arpLine = execArp.split('\n')
 
