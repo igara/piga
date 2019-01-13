@@ -1,5 +1,4 @@
 import axios from 'axios'
-import CookieParser from 'cookieparser'
 
 export const state = () => ({
   devices: []
