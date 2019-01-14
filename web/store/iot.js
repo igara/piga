@@ -18,7 +18,7 @@ export const actions = {
     try {
       const sessionId = this.$cookies.get('connect.sid')
       const devices = await this.$axios.$get(
-        'https://piga.syonet.work/api/iot',
+        '/api/iot',
         {},
         { headers: { token: `connect.sid=${sessionId}` } }
       )
@@ -31,7 +31,7 @@ export const actions = {
     try {
       const sessionId = this.$cookies.get('connect.sid')
       const devices = await this.$axios.$post(
-        'https://piga.syonet.work/api/iot',
+        '/api/iot',
         {
           ip: param.ip,
           turn: param.turn
