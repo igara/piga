@@ -105,10 +105,10 @@ app.post('/', async (req, res) => {
   const devices = []
   try {
     for (const ip of tpLinkIps) {
-      if (tpLinkIps === ipAddress) {
+      const device = await client.getDevice({ host: ip })
+      if (ip === ipAddress) {
         await device.setPowerState(turn)
       }
-      const device = await client.getDevice({ host: ip })
       const sysInfo = await device.getSysInfo()
       const powerState = await device.getPowerState()
       sysInfo.power_state = powerState
